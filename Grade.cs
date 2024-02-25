@@ -9,9 +9,12 @@ namespace Course_Pack
     internal class Grade
     {
         public float gradeValue;
+        public string grade;
+
 
         public Grade(string gradeName)
         {
+            this.grade = gradeName;
             if(gradeName == "A+" || gradeName == "a+")
             {
                 this.gradeValue = 4;

@@ -74,29 +74,37 @@ namespace Course_Pack
             int Do = -1;
             while (Do != 0)
             {
-                Console.WriteLine("What do you want to Do?\n(1) Show All Courses\n(2) Search a course\n(3) Calculate CGPA\n(4) Show available courses\n(0) Close");
-                Do=int.Parse(Console.ReadLine());
-                if(Do == 1)
+                Console.WriteLine("\nWhat do you want to Do?\n(1) Show All Courses\n(2) Search a course\n(3) Calculate CGPA\n(4) Show available courses\n(0) Close");
+                string _fix = Console.ReadLine();
+                if (int.TryParse(_fix, out _))
                 {
-                    init.showCourses();
-                }
-                else if(Do == 2)
-                {
-                    Console.WriteLine("Please Enter The Course Code.(e.g: CSC1102)");
-                    string code=Console.ReadLine();
-                    init.searchCourse(code);
-                }
-                else if (Do == 3)
-                {
-                    init.cgpaCalculator();
-                }
-                else if (Do == 4)
-                {
-                    init.showAvaCourse();
-                }
-                else if( Do == 0)
-                {
-                    Console.WriteLine("Thanks...");
+                    Do = int.Parse(_fix);
+                    if (Do == 1)
+                    {
+                        init.showCourses();
+                    }
+                    else if (Do == 2)
+                    {
+                        Console.WriteLine("Please Enter The Course Code.(e.g: CSC1102)");
+                        string code = Console.ReadLine();
+                        init.searchCourse(code);
+                    }
+                    else if (Do == 3)
+                    {
+                        init.cgpaCalculator();
+                    }
+                    else if (Do == 4)
+                    {
+                        init.showAvaCourse();
+                    }
+                    else if (Do == 0)
+                    {
+                        Console.WriteLine("Thanks...");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please Enter a Valid Option!!!");
+                    }
                 }
                 else
                 {

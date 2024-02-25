@@ -40,7 +40,7 @@ namespace Course_Pack
             }
             if (!check)
             {
-                Console.WriteLine("Oops..It's seems Wrong.\nMaybe Your Given Course Code Is Wrong Or In MisFormat\nTry Again Carefully...");
+                Console.WriteLine("\nOops..It's seems Wrong.\nMaybe Your Given Course Code Is Wrong Or In MisFormat\nTry Again Carefully...\n");
             }
         }
 
@@ -69,7 +69,7 @@ namespace Course_Pack
             {
                 if (index < completedCourses)
                 {
-                    Console.WriteLine("Course Name: " + courses[i].Name);
+                    Console.WriteLine("\nCourse Name: " + courses[i].Name);
                     bool flag = false;
                     do
                     {
@@ -99,9 +99,10 @@ namespace Course_Pack
                 }
 
             }
+            Console.WriteLine("\nYour Completed Courses: \n");
             for (int i = 0; i < completedCourses; i++)
             {
-                Console.WriteLine("(" + (i + 1) + ") " + CompletedCourses[i].Name + "\n ->  " + CompletedCourses[i].Code + "\n ->  " + CompletedCourses[i].Credit + "\n");
+                Console.WriteLine("(" + (i + 1) + ") " + CompletedCourses[i].Name + "\nCode ->  " + CompletedCourses[i].Code + "\nCredit ->  " + CompletedCourses[i].Credit + "\nGrade ->  " + (CompletedCourses[i].Grade.grade.ToUpper()) + "\n");
             }
             return index;
         }
@@ -145,6 +146,7 @@ namespace Course_Pack
                         if (courses[j].Code == CompletedCourses[k].Code)
                         {
                             fun = true;
+                            break;
                         }
                     }
                     if (fun == false)
@@ -201,21 +203,31 @@ namespace Course_Pack
                 bool checker = false;
                 do
                 {
+                    int fix;
                     Console.WriteLine("Press (1) Yes (0) No");
-                    int fix = int.Parse(Console.ReadLine());
-                    if (fix == 1)
+                    string _fix=Console.ReadLine();
+                    if(int.TryParse(_fix, out _))
                     {
-                        registerCourses(counter);
-                        checker = true;
-                    }
-                    else if (fix == 0)
-                    {
-                        checker = true;
+                        fix = int.Parse(_fix);
+                        if (fix == 1)
+                        {
+                            registerCourses(counter);
+                            checker = true;
+                        }
+                        else if (fix == 0)
+                        {
+                            checker = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please Enter A Valid Option\n");
+                        }
                     }
                     else
                     {
                         Console.WriteLine("Please Enter A Valid Option\n");
                     }
+                    
                 }
                 while (checker == false);
             }
@@ -234,7 +246,6 @@ namespace Course_Pack
         {
             int num = 0;
             int cost = 0, totalCredit = 0, labCost = 0;
-            int index = completedCourses;
             
             for (int i = 0; i < counter; i++)
             {
@@ -243,28 +254,36 @@ namespace Course_Pack
                 do
                 {
                     Console.WriteLine("To Take Course Press (1) Yes (0) No");
-                    int choose = int.Parse(Console.ReadLine());
+                    string _fix = Console.ReadLine();
+                    if (int.TryParse(_fix, out _))
+                    {
+                        int choose = int.Parse(_fix);
 
-                    if (choose == 1)
-                    {
-                        registerCourse[num++] = AvailableCourses[i];
-                        CompletedCourses[completedCourses++] = AvailableCourses[i];
-                        char cr = AvailableCourses[i].Credit[0];
-                        totalCredit += (int)Char.GetNumericValue(cr);
-                        cost += (int)Char.GetNumericValue(cr) * 5500;
-                        if (AvailableCourses[i].Credit[1] == '1')
+                        if (choose == 1)
                         {
-                            labCost += 2000;
+                            registerCourse[num++] = AvailableCourses[i];
+                            CompletedCourses[completedCourses++] = AvailableCourses[i];
+                            char cr = AvailableCourses[i].Credit[0];
+                            totalCredit += (int)Char.GetNumericValue(cr);
+                            cost += (int)Char.GetNumericValue(cr) * 5500;
+                            if (AvailableCourses[i].Credit[1] == '1')
+                            {
+                                labCost += 2000;
+                            }
+                            else if (AvailableCourses[i].Credit[2] == '1')
+                            {
+                                labCost += 2500;
+                            }
+                            choice = true;
                         }
-                        else if (AvailableCourses[i].Credit[2] == '1')
+                        else if (choose == 0)
                         {
-                            labCost += 2500;
+                            choice = true;
                         }
-                        choice = true;
-                    }
-                    else if (choose == 0)
-                    {
-                        choice = true;
+                        else
+                        {
+                            Console.WriteLine("Please Enter A Valid Option\n");
+                        }
                     }
                     else
                     {
