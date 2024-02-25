@@ -16,18 +16,20 @@ namespace Course_Pack
 
         public Grade Grade;
 
+        public string Retake = null;
 
-        public Course(string name, string code, Course firPreReq, Course secPreReq, string Credit)
+
+        public Course(string name, string code, Course firPreReq, Course secPreReq, string credit)
         {
-            this.Name = name;
-            this.Code = code;
-            this.FirPreReq = firPreReq;
-            this.SecPreReq = secPreReq;
-            this.Credit = Credit;
+            Name = name;
+            Code = code;
+            FirPreReq = firPreReq;
+            SecPreReq = secPreReq;
+            Credit = credit;
         }
         public Course()
         {
-            this.Name = "N/A" ;
+            Name = "N/A" ;
         }
     }
 }

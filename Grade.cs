@@ -14,46 +14,46 @@ namespace Course_Pack
 
         public Grade(string gradeName)
         {
-            this.grade = gradeName;
+            grade = gradeName;
             if(gradeName == "A+" || gradeName == "a+")
             {
-                this.gradeValue = 4;
+                gradeValue = 4;
             }
             else if (gradeName == "A" ||  gradeName == "a")
             {
-                this.gradeValue = 3.75f;
+                gradeValue = 3.75f;
             }
             else if (gradeName == "B+" || gradeName == "b+")
             {
-                this.gradeValue = 3.5f;
+                gradeValue = 3.5f;
             }
             else if (gradeName == "B" || gradeName == "b")
             {
-                this.gradeValue = 3.25f;
+                gradeValue = 3.25f;
             }
             else if (gradeName == "C+" || gradeName == "c+")
             {
-                this.gradeValue = 3.00f;
+                gradeValue = 3.00f;
             }
             else if (gradeName == "c" || gradeName == "c")
             {
-                this.gradeValue = 2.75f;
+                gradeValue = 2.75f;
             }
             else if (gradeName == "D+" || gradeName == "d+")
             {
-                this.gradeValue = 2.5f;
+                gradeValue = 2.5f;
             }
             else if (gradeName == "D" || gradeName == "d")
             {
-                this.gradeValue = 2.25f;
+                gradeValue = 2.25f;
             }
             else if (gradeName == "F" || gradeName == "f")
             {
-                this.gradeValue = 0.00f;
+                gradeValue = 0.00f;
             }
             else
             {
-                this.gradeValue = 0.00f;
+                gradeValue = 0.00f;
             }
         }
 
