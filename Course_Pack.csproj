@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Course_Pack.Driver</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="All_Courses.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="Grade.cs" />

@@ -12,6 +12,7 @@ namespace Course_Pack
     {
         public static int courseSize=57;
         public static int completedCourses;
+        public static int totalCreditCompleted;
         public static Course[] courses = new Course[courseSize];
         public static Course[] CompletedCourses = new Course[courseSize];
         public static Course[] AvailableCourses= new Course[courseSize];
@@ -49,21 +50,29 @@ namespace Course_Pack
 
         private int addComCourse()
         {
-            
             int index = 0;
             bool check = false;
             do
             {
                 Console.WriteLine("Please Enter How Many Courses You Have Completed Already");
-                completedCourses = int.Parse(Console.ReadLine());
-                if (completedCourses < courseSize + 1 && completedCourses > 0)
+                string fix = Console.ReadLine();
+                if(int.TryParse(fix,out _))
                 {
-                    check = true;
+                    completedCourses = int.Parse(fix);
+                    if (completedCourses < courseSize + 1 && completedCourses > 0)
+                    {
+                        check = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please Enter a Valid Number...");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Please Enter a Valid Number...");
                 }
+
             }
             while (check == false);
             
@@ -105,7 +114,7 @@ namespace Course_Pack
             Console.WriteLine("\nYour Completed Courses: \n");
             for (int i = 0; i < completedCourses; i++)
             {
-                Console.WriteLine("(" + (i + 1) + ") " + CompletedCourses[i].Name + "\nCode ->  " + CompletedCourses[i].Code + "\nCredit ->  " + CompletedCourses[i].Credit + "\nGrade ->  " + (CompletedCourses[i].Grade.grade.ToUpper()) + "\n");
+                Console.WriteLine("(" + (i + 1) + ") " + CompletedCourses[i].Name + "\nCode   ->  " + CompletedCourses[i].Code + "\nCredit ->  " + CompletedCourses[i].Credit + "\nGrade  ->  " + (CompletedCourses[i].Grade.grade.ToUpper()) + "\n");
             }
             return index;
         }
@@ -148,13 +157,21 @@ namespace Course_Pack
                     {
                         if (courses[j].Code == CompletedCourses[k].Code)
                         {
-                            if (courses[j].Grade.gradeValue <= 2.5)
+                            if(CompletedCourses[k].Grade is null)
                             {
-                                temp[pool++] = courses[j];
-                                temp[pool-1].Retake = "(Retake)";
+                                fun = true;
+                                break;
                             }
-                            fun = true;
-                            break;
+                            else
+                            {
+                                if (CompletedCourses[k].Grade.gradeValue <= new Grade("d+").gradeValue)
+                                {
+                                    temp[pool++] = courses[j];
+                                    temp[pool - 1].Retake = "(Retake)";
+                                }
+                                fun = true;
+                                break;
+                            }
                         }
                     }
                     if (fun == false)
@@ -210,8 +227,6 @@ namespace Course_Pack
                         Console.WriteLine("(" + (i + 1) + ") " + AvailableCourses[i].Name + "\nCode   ->  " + AvailableCourses[i].Code + "\nCredit ->  " + AvailableCourses[i].Credit + "\n");
                     }
                 }
-
-
 
                 Console.WriteLine("Do You Want to Take Course To Calculate The Total Cost And See The Available Course After Takeing Those Course?\n");
                 bool checker = false;
@@ -308,62 +323,44 @@ namespace Course_Pack
             Console.WriteLine("You Have Taken Those Courses: \nCredit (Lec-Sci-Com-Lan-Stu)\n");
             for (int i = 0; i < num; i++)
             {
-                
                 Console.WriteLine("(" +( i + 1) + ") " + registerCourse[i].Name + "\nCode   ->  " + registerCourse[i].Code + "\nCredit ->  " + registerCourse[i].Credit + "\n");
             }
+
             Console.WriteLine("Total Credit Taken: " + totalCredit +"\n"+ "\nYou Have to Pay " + ((cost / 2) + labCost + 3500) + "Tk In The First Instalment.\nYou Have to Pay " + (cost / 4) + "Tk In The Second Instalment.\nYou Have to Pay " + (cost / 4) + "Tk In The Third Instalment\n");
             Console.WriteLine("Total Cost: " + (cost + labCost + 3500 )+ "\n");
             if (completedCourses != 57)
             {
-                bool pick = false;
-                for (int i = 0; i < num;i ++)
+                for (int i = 0; i < num; i++)
                 {
                     if (registerCourse[i].Retake == null)
                     {
-                        pick = true;
                         CompletedCourses[completedCourses++] = registerCourse[i];
                     }
-                    else
+                }
+                for (int i = 0; i < num; i++)
+                {
+                    if (registerCourse[i].Retake != null)
                     {
-                        pick=false;
-                        Console.WriteLine("\nPlease Add The Grade Of The Retake Courses You Added...\n");
-                        for(int j=0;j< num;j++)
+                        registerCourse[i].Retake = null;
+                        registerCourse[i].Grade = new Grade("a+");
+                        for(int j = 0; j < completedCourses; j++)
                         {
-                            if (registerCourse[j].Retake != null)
+                            if (registerCourse[i].Code== CompletedCourses[j].Code)
                             {
-                                Console.WriteLine("(" + (i + 1) + ") " + registerCourse[i].Name + "\nCode           ->  " + registerCourse[i].Code + "\nCredit         ->  " + registerCourse[i].Credit + "\nPrevious Grade ->  " + registerCourse[i].Grade.grade + "\n");
-                                bool flag = false;
-                                do
-                                {
-                                    Console.WriteLine("Grade Obtained: ");
-                                    string addcourse = Console.ReadLine();
-                                    if (addcourse == ">")
-                                    {
-                                        flag = true;
-                                    }
-                                    else if (addcourse == "A+" || addcourse == "a+" || addcourse == "A" || addcourse == "a" || addcourse == "B+" || addcourse == "b+" || addcourse == "B" || addcourse == "b" || addcourse == "C+" || addcourse == "c+" || addcourse == "C" || addcourse == "c" || addcourse == "D+" || addcourse == "d+" || addcourse == "D" || addcourse == "d" || addcourse == "F" || addcourse == "f")
-                                    {
-                                        registerCourse[j].Grade = new Grade(addcourse);
-                                        CompletedCourses[completedCourses++] = registerCourse[j];
-                                        flag = true;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Please Enter Valid Option");
-                                    }
-
-                                }
-                                while (flag == false);
+                                CompletedCourses[j]= registerCourse[i];
+                                break;
                             }
-
                         }
-                        addcourse();
                     }
                 }
-                if (pick)
+
+                for (int i = 0; i < completedCourses; i++)
                 {
-                    addcourse();
+                    char cr = CompletedCourses[i].Credit[0];
+                    totalCreditCompleted += (int)Char.GetNumericValue(cr);
                 }
+                Console.WriteLine("Total Credit Completed: " +totalCreditCompleted+"\n");
+                addcourse();
             }
             else
             {

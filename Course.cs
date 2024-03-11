@@ -14,9 +14,9 @@ namespace Course_Pack
         public Course SecPreReq { get; }
         public string Credit { get; }
 
-        public Grade Grade;
+        public Grade Grade { get; set; }
 
-        public string Retake = null;
+        public string Retake ;
 
 
         public Course(string name, string code, Course firPreReq, Course secPreReq, string credit)
@@ -26,6 +26,7 @@ namespace Course_Pack
             FirPreReq = firPreReq;
             SecPreReq = secPreReq;
             Credit = credit;
+            Retake = null;
         }
         public Course()
         {

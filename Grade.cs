@@ -17,7 +17,7 @@ namespace Course_Pack
             grade = gradeName;
             if(gradeName == "A+" || gradeName == "a+")
             {
-                gradeValue = 4;
+                gradeValue = 4f;
             }
             else if (gradeName == "A" ||  gradeName == "a")
             {
