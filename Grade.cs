@@ -15,39 +15,39 @@ namespace Course_Pack
         public Grade(string gradeName)
         {
             grade = gradeName;
-            if(gradeName == "A+" || gradeName == "a+")
+            if(gradeName == "A+")
             {
                 gradeValue = 4f;
             }
-            else if (gradeName == "A" ||  gradeName == "a")
+            else if (gradeName == "A")
             {
                 gradeValue = 3.75f;
             }
-            else if (gradeName == "B+" || gradeName == "b+")
+            else if (gradeName == "B+")
             {
                 gradeValue = 3.5f;
             }
-            else if (gradeName == "B" || gradeName == "b")
+            else if (gradeName == "B")
             {
                 gradeValue = 3.25f;
             }
-            else if (gradeName == "C+" || gradeName == "c+")
+            else if (gradeName == "C+")
             {
                 gradeValue = 3.00f;
             }
-            else if (gradeName == "c" || gradeName == "c")
+            else if (gradeName == "c")
             {
                 gradeValue = 2.75f;
             }
-            else if (gradeName == "D+" || gradeName == "d+")
+            else if (gradeName == "D+")
             {
                 gradeValue = 2.5f;
             }
-            else if (gradeName == "D" || gradeName == "d")
+            else if (gradeName == "D")
             {
                 gradeValue = 2.25f;
             }
-            else if (gradeName == "F" || gradeName == "f")
+            else if (gradeName == "F")
             {
                 gradeValue = 0.00f;
             }

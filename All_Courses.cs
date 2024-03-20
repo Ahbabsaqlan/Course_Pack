@@ -87,11 +87,12 @@ namespace Course_Pack
                     {
                         Console.WriteLine("Grade Obtained: ");
                         string addcourse = Console.ReadLine();
+                        addcourse = addcourse.ToUpper();
                         if (addcourse == ">")
                         {
                             flag = true;
                         }
-                        else if (addcourse == "A+" || addcourse == "a+" || addcourse == "A" || addcourse == "a" || addcourse == "B+" || addcourse == "b+" || addcourse == "B" || addcourse == "b" || addcourse == "C+" || addcourse == "c+" || addcourse == "C" || addcourse == "c" || addcourse == "D+" || addcourse == "d+" || addcourse == "D" || addcourse == "d" || addcourse == "F" || addcourse == "f")
+                        else if (addcourse == "A+" || addcourse == "A" || addcourse == "B+" || addcourse == "B" || addcourse == "C+" || addcourse == "C" || addcourse == "D+" || addcourse == "D" || addcourse == "F")
                         {
                             CompletedCourses[index++] = courses[i];
                             CompletedCourses[index - 1].Grade = new Grade(addcourse);
@@ -141,7 +142,7 @@ namespace Course_Pack
                 char cr = CompletedCourses[i].Credit[0];
                 credit += (int)Char.GetNumericValue(cr);
             }
-            Console.WriteLine("Your CGPA: " + (cgpa/credit)+"\nYour Total Credit Completed: "+credit+"\n");
+            Console.WriteLine("Your CGPA: " + Math.Round((cgpa/credit),2)+"\nYour Total Credit Completed: "+credit+"\n");
             
         }
         private void addcourse()
@@ -164,7 +165,7 @@ namespace Course_Pack
                             }
                             else
                             {
-                                if (CompletedCourses[k].Grade.gradeValue <= new Grade("d+").gradeValue)
+                                if (CompletedCourses[k].Grade.gradeValue <= new Grade("D+").gradeValue)
                                 {
                                     temp[pool++] = courses[j];
                                     temp[pool - 1].Retake = "(Retake)";
@@ -342,7 +343,7 @@ namespace Course_Pack
                     if (registerCourse[i].Retake != null)
                     {
                         registerCourse[i].Retake = null;
-                        registerCourse[i].Grade = new Grade("a+");
+                        registerCourse[i].Grade = new Grade("A+");
                         for(int j = 0; j < completedCourses; j++)
                         {
                             if (registerCourse[i].Code== CompletedCourses[j].Code)
